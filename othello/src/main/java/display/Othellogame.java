@@ -39,7 +39,7 @@ import othello.Position;
  * @author user2
  *
  */
-public class othellogame extends JFrame {
+public class Othellogame extends JFrame {
 
 	private JPanel contentPane;
 	/**
@@ -111,7 +111,7 @@ public class othellogame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					othellogame frame = new othellogame();
+					Othellogame frame = new Othellogame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -135,7 +135,7 @@ public class othellogame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public othellogame() {
+	public Othellogame() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 420, 374);
@@ -145,6 +145,7 @@ public class othellogame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 				JPanel inf_panel = new JPanel();
+				inf_panel.setToolTipText("右側パネル群");
 				contentPane.add(inf_panel, BorderLayout.EAST);
 				inf_panel.setLayout(new BoxLayout(inf_panel, BoxLayout.Y_AXIS));
 
@@ -152,47 +153,50 @@ public class othellogame extends JFrame {
 				inf_panel.add(panel_stone_inf);
 				panel_stone_inf.setLayout(new BoxLayout(panel_stone_inf, BoxLayout.Y_AXIS));
 
-				JPanel panel = new JPanel();
-				panel_stone_inf.add(panel);
-				panel.setLayout(new GridLayout(0, 1, 0, 0));
+				JPanel panel_black_num = new JPanel();
+				panel_black_num.setToolTipText("黒数パネル");
+				panel_stone_inf.add(panel_black_num);
+				panel_black_num.setLayout(new GridLayout(0, 1, 0, 0));
 
 				JTextField textField = new JTextField();
 				textField.setEditable(false);
 				textField.setText("\u9ED2\u306E\u6570");
-				panel.add(textField);
+				panel_black_num.add(textField);
 				textField.setColumns(10);
 
 				textField_black_stone_num = new JTextField();
 				textField_black_stone_num.setText("0");
 				textField_black_stone_num.setBackground(Color.WHITE);
 				textField_black_stone_num.setEditable(false);
-				panel.add(textField_black_stone_num);
+				panel_black_num.add(textField_black_stone_num);
 				textField_black_stone_num.setColumns(10);
 
-				JPanel panel_1 = new JPanel();
-				panel_stone_inf.add(panel_1);
-				panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+				JPanel panel_white_num = new JPanel();
+				panel_white_num.setToolTipText("白数パネル");
+				panel_stone_inf.add(panel_white_num);
+				panel_white_num.setLayout(new GridLayout(0, 1, 0, 0));
 
 				JTextField textField_2 = new JTextField();
 				textField_2.setEditable(false);
 				textField_2.setText("\u767D\u306E\u6570");
-				panel_1.add(textField_2);
+				panel_white_num.add(textField_2);
 				textField_2.setColumns(10);
 
 				textField_white_stone_num = new JTextField();
 				textField_white_stone_num.setText("0");
 				textField_white_stone_num.setBackground(Color.WHITE);
 				textField_white_stone_num.setEditable(false);
-				panel_1.add(textField_white_stone_num);
+				panel_white_num.add(textField_white_stone_num);
 				textField_white_stone_num.setColumns(10);
 
-				JPanel panel_2 = new JPanel();
-				panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-				panel_stone_inf.add(panel_2);
-				panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+				JPanel panel_pass_num = new JPanel();
+				panel_pass_num.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				panel_stone_inf.add(panel_pass_num);
+				panel_pass_num.setLayout(new GridLayout(0, 1, 0, 0));
 
 								JPanel panel_3 = new JPanel();
-								panel_2.add(panel_3);
+								panel_3.setToolTipText("パス回数パネル");
+								panel_pass_num.add(panel_3);
 								panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
 
 								JTextField textField_1 = new JTextField();
@@ -210,9 +214,10 @@ public class othellogame extends JFrame {
 								infoPane.setToolTipText("\u60C5\u5831\u30D1\u30CD\u30EB");
 								infoPane.setBackground(Color.WHITE);
 								infoPane.setEditable(false);
-								panel_2.add(infoPane);
+								panel_pass_num.add(infoPane);
 
 				panel_setting = new JPanel();
+				panel_setting.setToolTipText("先行後攻選択パネル");
 				inf_panel.add(panel_setting);
 				panel_setting.setLayout(new BoxLayout(panel_setting, BoxLayout.Y_AXIS));
 
@@ -228,6 +233,7 @@ public class othellogame extends JFrame {
 				panel_setting.add(rdbtn_white);
 
 		JPanel btn_panel = new JPanel();
+		btn_panel.setToolTipText("下部パネル");
 		contentPane.add(btn_panel, BorderLayout.SOUTH);
 
 		final JButton btnGamePlay = new JButton("\u958B\u59CB");
@@ -300,6 +306,7 @@ public class othellogame extends JFrame {
 		btn_panel.add(btnPass);
 
 		editorPane = new JEditorPane();
+		editorPane.setToolTipText("盤面");
 		editorPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
